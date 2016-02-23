@@ -92,7 +92,7 @@ function BlackJack(){
 				for (var i = 0; i < data.length; i++) {
 					var r = data[i][1];
 
-					result[r]++
+					result[r]++;
 
 					var preR = (i === 0) ? data[i][1] : data[i-1][1];
 
@@ -112,6 +112,10 @@ function BlackJack(){
 						}
 					} 
 				}
+
+				maxWinInRow = maxWinInRow || maxWinInRowTmp;
+				maxLoseInRow = maxLoseInRow || maxLoseInRowTmp;
+
 
 				s += 'Win: ' + result.win + '\n';
 				s += 'Lose: ' + result.lose + '\n';
