@@ -384,18 +384,17 @@ function BlackJack(){
 
 		var file = './log/' + _self.player.name + '_log.txt';
 
-		fs.exists('./log', (exists) => {
+		if(!fs.existsSync('./log')){
+			fs.mkdirSync('./log');
+		}
+		
+		fs.exists(file, (exists) =>{
 			if(!exists){
-				fs.mkdir('./log');
-			} else{
-				fs.exists(file, (exists) =>{
-					if(!exists){
-						fs.appendFile(file, 'date_time;result;player;dealer;\n', 'utf8', (err) => {if (err) throw err;})		
-					}
-
-					fs.appendFile(file, log, 'utf8', (err) => {if (err) throw err;})
-				})
+				fs.appendFileSync(file, 'date_time;result;player;dealer;\n', 'utf8');
 			}
+
+			fs.appendFile(file, log, 'utf8', (err) => {if (err) throw err;})
+
 		})	
 	}
 }
